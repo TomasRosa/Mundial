@@ -44,9 +44,23 @@ public class Main {
         federacionArgentina.mostrarListaGenerica();
 
 
-        federacionArgentina.exportarAArchivoJson(federacionArgentina,"mi_archivo.json");
+        try
+        {
+            federacionArgentina.exportarAArchivoJson(federacionArgentina,"mi_archivo.json");
+        }
+        catch (IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Mostrando...");
-        federacionArgentina.mostrarArchivoJson("mi_archivo.json");
+        try
+        {
+            federacionArgentina.mostrarArchivoJson("mi_archivo.json");
+        }
+        catch (IOException e)
+        {
+            System.out.printf(e.getMessage());
+        }
 
     }
 

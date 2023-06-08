@@ -143,35 +143,23 @@ public class Federacion <T>
             System.out.println(elemento);
         }
     }
-    public void exportarAArchivoJson (Federacion fed, String name)
-    {
+    public void exportarAArchivoJson (Federacion fed, String name) throws IOException {
         File file = new File(name);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        try
-        {
-            objectMapper.writeValue(file,fed);
-        }
-        catch (IOException e )
-        {
-            System.out.println(e.getMessage());
-        }
+        if(!file.exists()) throw new IOException();
+
+        objectMapper.writeValue(file,fed);
     }
-    public void mostrarArchivoJson (String name)
-    {
+    public void mostrarArchivoJson (String name) throws IOException {
         File file = new File(name);
         Federacion fed = null;
         ObjectMapper objectMapper = new ObjectMapper();
 
-        try
-        {
-            fed = objectMapper.readValue(file,Federacion.class);
-            System.out.println(fed);
-        }
-        catch (IOException e)
-        {
-            System.out.printf(e.getMessage());
-        }
+        if(!file.exists()) throw new IOException();
+
+        fed = objectMapper.readValue(file,Federacion.class);
+        System.out.println(fed);
     }
 }
